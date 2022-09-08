@@ -40,18 +40,14 @@ export class ProductComponent implements OnInit {
 
   getProductsByCategory(category:string) {
     this.productService.getProductsByCategory(category).subscribe(response=>{
-      this.products = response.data
+      this.products = response
       this.dataLoaded = true;
     })
   }
 
   addToCart(product:Product){
-      if(product.id===1){
-        this.toastrService.error("Hata","Bu ürün sepete eklenemez")
-      }else{
-        this.toastrService.success("Sepete eklendi",product.title)
-        this.cartService.addToCart(product);
-      }
+    this.toastrService.success("Sepete eklendi",product.title)
+    this.cartService.addToCart(product);
 
   }
 }

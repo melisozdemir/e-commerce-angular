@@ -7,7 +7,7 @@ import { Product } from '../models/product';
   providedIn: 'root'
 })
 export class CartService {
-
+  
   constructor() { }
 
   addToCart(product:Product){
@@ -29,5 +29,9 @@ export class CartService {
 
   list():CartItem[]{
     return CartItems;
+  }
+
+  total():number{
+    return CartItems.length;
   }
 }
