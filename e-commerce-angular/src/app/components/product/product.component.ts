@@ -14,43 +14,44 @@ export class ProductComponent implements OnInit {
   products: Product[] = [];
   dataLoaded = false;
   filterText="";
-  
-  constructor(private productService:ProductService, 
-    private activatedRoute:ActivatedRoute, 
+
+  constructor(private productService:ProductService,
+    private activatedRoute:ActivatedRoute,
     private toastrService:ToastrService,
     private cartService:CartService) {}
 
   ngOnInit(): void {
-      this.activatedRoute.params.subscribe(params=>{
-        if(params["categoryId"]){
-          this.getProductsByCategory(params["categoryId"])
+       this.activatedRoute.params.subscribe(params=>{
+        if(params["category"]){
+          this.getProductsByCategory(params["category"])
         }else{
           this.getProducts()
         }
-      })
+
+       })
   }
 
   getProducts() {
     this.productService.getProducts().subscribe(response=>{
-      this.products = response.data
+      this.products = response
       this.dataLoaded = true;
-    })   
+    })
   }
 
-  getProductsByCategory(categoryId:number) {
-    this.productService.getProductsByCategory(categoryId).subscribe(response=>{
+  getProductsByCategory(category:string) {
+    this.productService.getProductsByCategory(category).subscribe(response=>{
       this.products = response.data
       this.dataLoaded = true;
-    })   
+    })
   }
 
   addToCart(product:Product){
-      if(product.productId===1){
+      if(product.id===1){
         this.toastrService.error("Hata","Bu ürün sepete eklenemez")
       }else{
-        this.toastrService.success("Sepete eklendi",product.productName)
+        this.toastrService.success("Sepete eklendi",product.title)
         this.cartService.addToCart(product);
       }
-   
+
   }
 }

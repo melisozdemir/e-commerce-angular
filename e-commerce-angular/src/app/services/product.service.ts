@@ -10,19 +10,20 @@ import { ResponseModel } from '../models/responseModel';
 })
 export class ProductService {
 
-  apiUrl = 'https://localhost:44314/api/';
+  apiUrl = 'https://fakestoreapi.com/';
 
   constructor(private httpClient: HttpClient) { }
 
-  getProducts():Observable<ListResponseModel<Product>> {
-    let newPath = this.apiUrl + "products/getall"
+  getProducts():Observable<Product[]> {
+    let newPath = this.apiUrl + "products"
+    return this.httpClient.get<Product[]>(newPath);
+  }
+
+  getProductsByCategory(category:string):Observable<ListResponseModel<Product>> {
+    let newPath = this.apiUrl + "products/category"+category
     return this.httpClient.get<ListResponseModel<Product>>(newPath);
   }
 
-  getProductsByCategory(categoryId:number):Observable<ListResponseModel<Product>> {
-    let newPath = this.apiUrl + "products/getbycategory?categoryId="+categoryId
-    return this.httpClient.get<ListResponseModel<Product>>(newPath);
-  }
 
   add(product:Product):Observable<ResponseModel>{
     return this.httpClient.post<ResponseModel>(this.apiUrl+"products/add",product)
