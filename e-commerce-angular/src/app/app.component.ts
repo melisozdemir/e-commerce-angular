@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
 
 @Component({
   selector: 'app-root',

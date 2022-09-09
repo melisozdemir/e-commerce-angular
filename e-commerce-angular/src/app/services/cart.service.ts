@@ -20,6 +20,7 @@ export class CartService {
       cartItem.quantity =1;
       CartItems.push(cartItem)
     }
+    console.log(JSON.stringify(CartItems));
   }
 
   removeFromCart(product:Product){

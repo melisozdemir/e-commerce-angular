@@ -9,13 +9,10 @@ import { AppComponent } from './app.component';
 import { ProductComponent } from './components/product/product.component';
 import { CategoryComponent } from './components/category/category.component';
 import { NaviComponent } from './components/navi/navi.component';
-import { TodoComponent } from './components/todo/todo.component';
-import { VatAddedPipe } from './pipes/vat-added.pipe';
 import { FilterPipePipe } from './pipes/filter-pipe.pipe';
 
 import {ToastrModule} from "ngx-toastr";
 import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
-import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -23,8 +20,6 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     ProductComponent,
     CategoryComponent,
     NaviComponent,
-    TodoComponent,
-    VatAddedPipe,
     FilterPipePipe,
     CartSummaryComponent
   ],
@@ -40,7 +35,6 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     })
   ],
   providers: [
-    {provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true}
   ],
   bootstrap: [AppComponent]
 })

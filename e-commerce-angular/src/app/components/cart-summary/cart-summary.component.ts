@@ -17,10 +17,14 @@ export class CartSummaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCart();
+    this.getTotal();
   }
 
   getCart() {
     this.cartItems = this.cartService.list();
+  }
+
+  getTotal(){
     this.total = this.cartService.total();
   }
 
